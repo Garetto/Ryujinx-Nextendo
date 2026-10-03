@@ -161,20 +161,25 @@
                 <CheckBox Margin="10,0,0,0" Name="ServerOverrideToggle"
                           Content="{ext:Locale Dialog_Nextendo_OverrideEnable}" />
 
-                <Grid Margin="10,0,0,0" ColumnDefinitions="200,300" RowDefinitions="Auto,Auto" Name="OverrideFields">
+                <Grid Margin="10,0,0,0" ColumnDefinitions="200,300" RowDefinitions="Auto,Auto,Auto" Name="OverrideFields">
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
-                               Text="{ext:Locale Dialog_Nextendo_OverrideServerIp}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="ServerIpBox" MaxLength="45"
-                             Watermark="{ext:Locale Dialog_Nextendo_OverrideServerIpHint}" />
+                               Text="Server host" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="ServerHostBox" MaxLength="253"
+                             Watermark="Example: smb35.garretpeters.com" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,8,0,0" VerticalAlignment="Center"
-                               Text="{ext:Locale Dialog_Nextendo_OverrideNatIp}" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" Name="NatIpBox" MaxLength="45"
-                             Watermark="{ext:Locale Dialog_Nextendo_OverrideNatIpHint}" />
+                               Text="Server port" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" Name="ServerPortBox" MaxLength="5"
+                             Watermark="443" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,8,0,0" VerticalAlignment="Center"
+                               Text="Second NAT probe host (optional)" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="0,8,0,0" Name="NatHostBox" MaxLength="253"
+                             Watermark="Only needed for NAT/P2P testing" />
                 </Grid>
 
                 <TextBlock Margin="10,0,0,0" Opacity="0.7" TextWrapping="Wrap" FontSize="11"
-                           Text="{ext:Locale Dialog_Nextendo_OverrideNatWarning}" />
+                           Text="The game still connects to its normal HTTPS port (443). A custom server port redirects only that custom-server connection inside Ryujinx. The optional NAT probe host is not an NEX or Eagle endpoint." />
 
                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal" Spacing="10">
                     <Button Name="SaveOverrideButton"

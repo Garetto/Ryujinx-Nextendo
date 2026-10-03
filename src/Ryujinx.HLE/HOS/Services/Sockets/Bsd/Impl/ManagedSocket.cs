@@ -274,6 +274,17 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd.Impl
                     VioletGamesyncDestinationPort());
             }
 
+            // A custom server can listen behind a non-standard public port while the guest game
+            // continues to use its built-in HTTPS endpoint. Restrict this to TCP/443 and to the
+            // configured DNS-redirection address so P2P and unrelated traffic cannot be captured.
+            if (SocketType == SocketType.Stream && ProtocolType == ProtocolType.Tcp &&
+                NextendoServerOverride.TryGetServerPortRedirect(remoteEndPoint.Address, remoteEndPoint.Port, out int serverPort))
+            {
+                Logger.Info?.PrintMsg(LogClass.ServiceBsd,
+                    $"[Nextendo] Custom server port rewrite: {remoteEndPoint.Address}:443 -> {remoteEndPoint.Address}:{serverPort}");
+                remoteEndPoint = new IPEndPoint(remoteEndPoint.Address, serverPort);
+            }
+
             // [Nextendo] La boucle locale est traitee comme le reseau local : une redirection
             // qui atterrit sur 127.0.0.1 signifie que l adresse du serveur n a jamais ete
             // configuree, et la masquer transformait ca en panne inexplicable.

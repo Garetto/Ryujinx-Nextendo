@@ -60,6 +60,23 @@ Point a build at a Nextendo Network server (or your own) with these environment 
 
 If none are set, online features stay dormant and this build runs as a normal offline emulator.
 
+### Custom-server host and port
+
+The in-app **Custom server** setting also accepts a hostname and a port. This
+exists for self-hosted deployments that publish their NEX endpoint on a normal
+DNS name and a non-standard TCP port, rather than requiring an operating-system
+or firewall redirect from the game's usual HTTPS port (443).
+
+Ryujinx resolves the configured hostname with the host operating system, then
+continues to redirect the game's expected server names to that IPv4 address. For
+TCP connections to that redirected server only, it changes port 443 to the
+configured custom port. Other connections, including NAT/P2P traffic, are left
+unchanged. The optional second NAT-probe host remains separate because it is not
+an NEX or Eagle endpoint.
+
+Existing `nextendo_server_override.json` files using `ServerIp` and `NatIp`
+remain supported as legacy field names.
+
 ## System requirements
 
 To run comfortably, your PC should have at least:
