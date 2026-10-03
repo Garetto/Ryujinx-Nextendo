@@ -62,9 +62,10 @@ If none are set, online features stay dormant and this build runs as a normal of
 
 ### Custom-server host and port
 
-The in-app **Custom server** setting also accepts a hostname and a port. This
-exists for self-hosted deployments that publish their NEX endpoint on a normal
-DNS name and a non-standard TCP port, rather than requiring an operating-system
+The in-app **Custom server** setting also accepts a fully qualified domain name
+(FQDN) or IPv4 address and a port. This exists for self-hosted deployments that
+publish their NEX endpoint on a normal DNS name and a non-standard TCP port,
+rather than requiring an operating-system
 or firewall redirect from the game's usual HTTPS port (443).
 
 Ryujinx resolves the configured hostname with the host operating system, then
